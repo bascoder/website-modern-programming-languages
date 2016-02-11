@@ -1,0 +1,10 @@
+- w3c validation, als mogelijk
+- gebruik ES6 en compile naar ECMAScript 5
+- check usability lijst https://www.nngroup.com/articles/top-10-mistakes-web-design/
+- pagina met inleiding
+- pagina met hoofdtekst
+- pagina met grafiek
+- pagina met foto browser Flickr API
+- navigatie balk
+- sitemap, met navigatie mogelijkheid
+- genereer bronnen dynamisch, (HTML5 data attributen?)
