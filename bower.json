@@ -1,0 +1,32 @@
+{
+  "name": "newest-programming-languages-2016",
+  "authors": [
+    "Bas van Marwijk"
+  ],
+  "description": "Website about most modern versions of programming languages",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "website",
+    "modern",
+    "programming",
+    "language",
+    "version",
+    "es6",
+    "php7"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.students.science.uu.nl/~5836530/",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "jquery-ui": "^1.11.4"
+  }
+}

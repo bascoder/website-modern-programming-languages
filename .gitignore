@@ -1,0 +1,8 @@
+# Created by .ignore support plugin (hsz.mobi)
+### JetBrains template
+
+## Directory-based project format:
+.idea/
+
+### Custom
+bower_components/
