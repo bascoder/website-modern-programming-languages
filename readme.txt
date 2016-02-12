@@ -1,6 +1,6 @@
 # Auteurs
 Bas van Marwijk 5836530
-Jorrit Krapels
+Jorrit Krapels 3810992
 
 # Locatie website
 Url: http://www.students.science.uu.nl/~5836530/practicum1
