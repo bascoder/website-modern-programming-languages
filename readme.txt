@@ -13,3 +13,7 @@ Chrome 48.0.2564.109 m
 
 # Lokaal installeren met Git
 `bower install`
+
+
+# Features
+- main.js laad webpagina elementen dynamisch in.
