@@ -1,0 +1,9 @@
+RewriteEngine on
+
+# If requested resource exists as a file or directory go to it
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule (.*) - [L]
+
+# Else rewrite requests for non-existent resources to /index.html
+RewriteRule (.*) /~5836530/practicum1/index.html [L]
