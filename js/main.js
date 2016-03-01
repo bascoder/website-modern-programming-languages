@@ -40,7 +40,11 @@
         }
 
         function loadContent() {
-            $('#content-section').load(config.pagesDirectory + '_' + currentPage);
+            var url = config.pagesDirectory + '_' + currentPage;
+            console.log('Start loading ', url);
+            $('#content-section').load(url, null, function () {
+                console.log('Done loading ', url);
+            });
         }
 
         function setCurrentPage() {
