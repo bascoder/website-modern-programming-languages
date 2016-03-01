@@ -2,7 +2,8 @@
     "use strict";
 
     var config = {
-        templateDirectory: 'templates/'
+        templateDirectory: 'templates/',
+        pagesDirectory: 'pages/'
     };
 
     var isFunction = function (object) {
@@ -34,8 +35,12 @@
             });
         }
 
-        function initMainContent() {
-            appendTemplate('_main_content.html');
+        function initMainDivision() {
+            appendTemplate('_main_content.html', loadContent);
+        }
+
+        function loadContent() {
+            $('#content-section').load(config.pagesDirectory + '_' + currentPage);
         }
 
         function appendTemplate(template, callback) {
@@ -59,14 +64,18 @@
             setCurrentPage();
 
             initNav();
-            initMainContent();
+            initMainDivision();
         };
 
         this.swapPage = function () {
+            var previous = currentPage;
             setCurrentPage();
 
-            console.log("New page: ", currentPage);
-            setActiveLi();
+            if(previous != currentPage) {
+                console.log("New page: ", currentPage);
+                setActiveLi();
+                loadContent();
+            }
         };
     };
 
