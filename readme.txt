@@ -14,6 +14,10 @@ Chrome 48.0.2564.109 m
 # Lokaal installeren met Git
 `bower install`
 
+# Lokaal runnen met npm package live-server
+`live-server --entry-file=index.html`
 
 # Features
-- main.js laad webpagina elementen dynamisch in.
+- main.js laadt webpagina elementen dynamisch in.
+- gebruik HTML5 history api voor client side navigatie.
+- gebruik .htaccess Rewrite conditions om niet bestaande pagina's door te verwijzen.

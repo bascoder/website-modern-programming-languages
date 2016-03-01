@@ -1,7 +1,8 @@
 {
   "name": "newest-programming-languages-2016",
   "authors": [
-    "Bas van Marwijk"
+    "Bas van Marwijk",
+    "Jorrit Krapels"
   ],
   "description": "Website about most modern versions of programming languages",
   "main": "index.html",
