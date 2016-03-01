@@ -26,7 +26,7 @@
 
         function initNav() {
 
-            appendTemplate('_nav.html', function () {
+            $('#general-nav').load(config.templateDirectory + '_nav.html', null, function () {
                 $('#general-nav').find('a').each(function () {
                     addClicker(this);
                 });
@@ -36,20 +36,11 @@
         }
 
         function initMainDivision() {
-            appendTemplate('_main_content.html', loadContent);
+            $('#main-content').load(config.templateDirectory + '_main_content.html', null, loadContent);
         }
 
         function loadContent() {
             $('#content-section').load(config.pagesDirectory + '_' + currentPage);
-        }
-
-        function appendTemplate(template, callback) {
-            $.get(config.templateDirectory + template, function (data) {
-                $('body').append(data);
-                if (isFunction(callback)) {
-                    callback(data);
-                }
-            });
         }
 
         function setCurrentPage() {
