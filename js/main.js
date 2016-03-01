@@ -45,6 +45,8 @@
             $('#content-section').load(url, null, function () {
                 console.log('Done loading ', url);
             });
+
+            validator.updateValidator();
         }
 
         function setCurrentPage() {
@@ -87,6 +89,34 @@
         }
     };
 
+    var Validator = function () {
+        function validate(callback) {
+            var urlEncoded = encodeURI(window.location.href);
+            $.getJSON("https://validator.w3.org/nu/?out=json&doc=" + urlEncoded, null, function (json) {
+                callback(json);
+            });
+        }
+
+        function setHtmlElement(messages) {
+            var validator = $('#validator');
+            validator.html('W3C error count: ' + messages);
+            if(messages > 1) {
+                validator.addClass('text-error');
+                validator.removeClass('text-success');
+            } else {
+                validator.addClass('text-success');
+                validator.removeClass('text-error');
+            }
+        }
+
+        this.updateValidator = function () {
+            validate(function (status) {
+                var messages = status.messages.length;
+                setHtmlElement(messages);
+            });
+        }
+    };
+
     function addClicker(link) {
         link.addEventListener("click", function (e) {
             try {
@@ -103,6 +133,7 @@
 
     var page = new Page();
     var navigation = new Navigation();
+    var validator = new Validator();
 
     page.init();
     navigation.init();

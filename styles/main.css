@@ -47,3 +47,22 @@ h1 {
 #main-content {
     margin-left: 26%;
 }
+
+#main-content footer {
+    position: absolute;
+    bottom: 0;
+    width: 70%;
+}
+
+/* Messages */
+.message {
+    font-weight: bold;
+}
+
+.message.text-success {
+    color:  #047526;
+}
+
+.message.text-error {
+    color: #751912;
+}
