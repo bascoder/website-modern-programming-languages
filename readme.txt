@@ -21,4 +21,4 @@ Chrome 48.0.2564.109 m
 - main.js laadt webpagina elementen dynamisch in.
 - gebruik HTML5 history api voor client side navigatie.
 - gebruik .htaccess Rewrite conditions om niet bestaande pagina's door te verwijzen.
-- W3C html validator in de footer.
+- W3C html validator in de footer. URL to detailed page.

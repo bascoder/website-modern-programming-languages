@@ -68,7 +68,7 @@
             var previous = currentPage;
             setCurrentPage();
 
-            if(previous != currentPage) {
+            if (previous != currentPage) {
                 console.log("New page: ", currentPage);
                 setActiveLi();
                 loadContent();
@@ -90,17 +90,21 @@
     };
 
     var Validator = function () {
-        function validate(callback) {
+        function getValidatorUri(out) {
             var urlEncoded = encodeURI(window.location.href);
-            $.getJSON("https://validator.w3.org/nu/?out=json&doc=" + urlEncoded, null, function (json) {
+            return "https://validator.w3.org/nu/?out=" + out + "&doc=" + urlEncoded;
+        }
+
+        function validate(callback) {
+            $.getJSON(getValidatorUri('json'), null, function (json) {
                 callback(json);
             });
         }
 
         function setHtmlElement(messages) {
             var validator = $('#validator');
-            validator.html('W3C error count: ' + messages);
-            if(messages > 1) {
+            validator.html('<a href="' + getValidatorUri('html') +'" target="_blank">W3C error count: ' + messages);
+            if (messages >= 1) {
                 validator.addClass('text-error');
                 validator.removeClass('text-success');
             } else {
