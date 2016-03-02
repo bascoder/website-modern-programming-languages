@@ -10,6 +10,7 @@ Url: http://www.students.science.uu.nl/~5836530/practicum1
 
 # Browser compatibiliteit
 Chrome 48.0.2564.109 m
+Firefox 39.0
 
 # Lokaal installeren met Git
 `bower install`
