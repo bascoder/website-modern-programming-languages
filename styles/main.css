@@ -14,6 +14,10 @@ h1 {
     font-size: 1.8em;
 }
 
+div {
+    overflow: hidden;
+}
+
 /* General navigation section */
 #general-nav ul {
     list-style-type: none;
