@@ -74,6 +74,14 @@
                 loadContent();
             }
         };
+
+        this.makeRefList = function() {
+            var allLinks = $("a[class='ref']");
+            allLinks.each(function(index) {
+                $(this).text(index);
+                $('#ReferenceList').append("<li>" + index + " " + $(this) + "</li>");
+            });
+        };
     };
 
     var Navigation = function () {
@@ -138,7 +146,6 @@
     var page = new Page();
     var navigation = new Navigation();
     var validator = new Validator();
-
     page.init();
     navigation.init();
 })();
