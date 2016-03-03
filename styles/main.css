@@ -82,15 +82,18 @@ div {
 }
 
 /* code as pre */
-code {
-    display: block;
-    font-family: monospace;
-    white-space: pre;
-    margin: 1em 0;
-}
-
 code.code-block {
     display: block;
+
     margin-top: 1.5em;
     margin-bottom: 1.5em;
+
+    font-family: monospace;
+    line-height: 1.5em;
+
+    white-space: pre;
+
+    border: 1px solid black;
+
+    background-color: #f0f0f0;
 }
