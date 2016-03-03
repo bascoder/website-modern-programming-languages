@@ -1,5 +1,5 @@
 <script>
-    $("#title").html('JavaScript 6');
+    changeTitle('JavaScript 6');
 </script>
 
 <h2 id="javascript-general">JavaScript in het algemeen</h2>
@@ -51,22 +51,22 @@
 <h4 id="lambda">Lambda expressies</h4>
 <article>
     <p data-reference="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions">
-        Met behulp van de arrow <code>=></code> notatie ondersteundt JavaScript 6 lambda expressies.
+        Met behulp van de arrow <i>=></i> notatie ondersteundt JavaScript 6 lambda expressies.
     </p>
     <p data-reference="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions">
         Op deze manier kan je een lamdbda expressie meegeven aan een functie:
         <code class="code-block">
-            var numbers = []; // some array<br />
-            numbers.forEach(v =&gt; {<br />
-            &Tab;console.log(v);<br />
-            });<br />
+            var numbers = []; // some array<br/>
+            numbers.forEach(v =&gt; {<br/>
+            &Tab;console.log(v);<br/>
+            });<br/>
         </code>
         Voor JavaScript 6 zou dat zo moeten:
         <code class="code-block">
-            var numbers = []; // some array<br />
-            numbers.forEach(function(v) {<br />
-            &Tab;console.log(v);<br />
-            });<br />
+            var numbers = []; // some array<br/>
+            numbers.forEach(function(v) {<br/>
+            &Tab;console.log(v);<br/>
+            });<br/>
         </code>
     </p>
 </article>

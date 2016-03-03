@@ -103,7 +103,7 @@
 
         function setHtmlElement(messages) {
             var validator = $('#validator');
-            validator.html('<a href="' + getValidatorUri('html') +'" target="_blank">W3C error count: ' + messages);
+            validator.html('<a href="' + getValidatorUri('html') + '" target="_blank">W3C error count: ' + messages);
             if (messages >= 1) {
                 validator.addClass('text-error');
                 validator.removeClass('text-success');
@@ -142,3 +142,12 @@
     page.init();
     navigation.init();
 })();
+
+"use strict";
+
+function changeTitle(title) {
+    $("#title").html(title);
+    if (title != 'modern programming languages 2016') {
+        $('title').html(title + ' - modern programming languages 2016');
+    }
+}
