@@ -72,13 +72,15 @@
                 console.log("New page: ", currentPage);
                 setActiveLi();
                 loadContent();
+                makeRefList();
             }
         };
 
-        this.makeRefList = function() {
+        function makeRefList() {
+            $('#ReferenceList').empty();
             var allLinks = $("a[class='ref']");
             allLinks.each(function(index) {
-                $(this).text(index);
+                $(this).append(index);
                 $('#ReferenceList').append("<li>" + index + " " + $(this) + "</li>");
             });
         };
