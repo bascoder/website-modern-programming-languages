@@ -4,37 +4,46 @@
 
 <h2 id="javascript-general">JavaScript in het algemeen</h2>
 <article>
-    <p data-reference="https://developer.mozilla.org/nl/docs/Web/JavaScript">
+    <p>
         JavaScript is een scripttaal die gedefinieerd is in de standaard ECMAScript.
         Sinds 2012 wordt ECMAScript 5.1 ondersteund door alle moderne browsers.
         JavaScript is zowel object-georiënteerd, functioneel als imperatief. JavaScript kan in browsers draaien maar ook
         in andere omgevingen zoals node.js.
+        <a href="https://developer.mozilla.org/nl/docs/Web/JavaScript"></a>
     </p>
-    <p data-reference="https://developer.mozilla.org/en-US/docs/Web/JavaScript/JavaScript_technologies_overview">
+    <p>
         Binnen een browser heeft JavaScript toegang tot de DOM API. DOM staat voor Document Object Model en bevat een
         set aan objecten waarmee elementen op een HTML pagina gemanipuleerd kunnen worden.
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/JavaScript_technologies_overview"
+           class="ref"></a>
     </p>
 </article>
 <h2 id="js-vs-java">JavaScript vs Java</h2>
 <article>
-    <p data-reference="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction#JavaScript_and_Java">
+    <p>
         JavaScript wordt vaak verward met Java. Echter zijn het twee verschillende programmeertalen. Bijvoorbeeld
         JavaScript gebruikt prototype-gebaseerde overerving en Java gebruikt klassen. Java heeft een streng type model
         waarbij je niet zomaar tussen verschillende types kan casten, JavaScript heeft een dynamisch type model waarbij
         je alles aan een variabele kan toewijzen.
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction#JavaScript_and_Java"
+           class="ref"></a>
     </p>
 </article>
 <h2 id="es6">JavaScript 6</h2>
 <article>
-    <p data-reference="['http://www.ecma-international.org/ecma-262/6.0/', 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla']">
+    <p>
         In 2015 is de 6de versie van JavaScript vastgelegd in de standaard ECMAScript 2015. Deze versie staat ook bekend
         als ECMAScript 6 of ES6.
+        <a href="http://www.ecma-international.org/ecma-262/6.0/" class="ref"></a>
+        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla"
+           class="ref"></a>
     </p>
 </article>
 <h3 id="nieuw-es6">Nieuw in JavaScript 6</h3>
 <article>
-    <p data-reference="https://github.com/lukehoban/es6features">
+    <p>
         De volgende onderdelen zijn nieuw in JavaScript 6:
+        <a href="https://github.com/lukehoban/es6features" class="ref"></a>
     </p>
     <ul>
         <li>Lambda expressies</li>
@@ -50,28 +59,155 @@
 </article>
 <h4 id="lambda">Lambda expressies</h4>
 <article>
-    <p data-reference="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions">
-        Met behulp van de arrow <i>=></i> notatie ondersteundt JavaScript 6 lambda expressies.
+    <p>
+        Met behulp van de arrow <i>=></i> notatie ondersteunt JavaScript 6 lambda expressies.
+        <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions" class="ref"></a>
     </p>
-    <p data-reference="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions">
+    <p>
         Op deze manier kan je een lamdbda expressie meegeven aan een functie:
+        <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions" class="ref"></a>
         <code class="code-block">
-            var numbers = []; // some array<br/>
-            numbers.forEach(v =&gt; {<br/>
-            &Tab;console.log(v);<br/>
-            });<br/>
+            var numbers = []; // some array
+            numbers.forEach(v =&gt; {
+            &Tab;console.log(v);
+            });
         </code>
         Voor JavaScript 6 zou dat zo moeten:
         <code class="code-block">
-            var numbers = []; // some array<br/>
-            numbers.forEach(function(v) {<br/>
-            &Tab;console.log(v);<br/>
-            });<br/>
+            var numbers = []; // some array
+            numbers.forEach(function(v) {
+            &Tab;console.log(v);
+            });
         </code>
     </p>
 </article>
 <h4 id="classes">Classes</h4>
+<article>
+    <p>
+        Sinds JavaScript 6 is het mogelijk om klassen te definiëren op dezelfde manier als
+        in Java of C&num;
+        <a href="http://www.sitepoint.com/understanding-ecmascript-6-class-inheritance/"></a>
+    </p>
+    <p>
+        Voor heen kon je objecten op de volgende twee manieren aanmaken:
+
+        <br/><br/>
+        De JavaScript object notatie:
+        <code class="code-block">
+            var person = {
+            &Tab;name: &#39;Harry&#39;,
+            &Tab;age: 20,
+            &Tab;sayHello: function() {
+            &Tab;&Tab;console.log(&#39;Hello&#39;);
+            &Tab;}
+            }
+
+            person.sayHello();
+        </code>
+        <br/>
+        De JavaScript constructor functie:
+        <code class="code-block">
+            var Person = function () {
+            &Tab;this.name = &#39;Harry&#39;;
+            &Tab;this.age = 20;
+
+            &Tab;this.sayHello = function () {
+            &Tab;&Tab;console.log(&#39;Hello&#39;);
+            &Tab;}
+            }
+
+            new Person().sayHello();
+        </code>
+        <br/>
+        Met JavaScript 6 is het mogelijk om een class te declareren:
+        <code class="code-block">
+            class Person {
+            &Tab; // getter for name
+            &Tab;get name() {
+            &Tab;&Tab;return this._name;
+            &Tab;}
+
+            &Tab; //setter for name
+            &Tab;set name(value) {
+            &Tab;&Tab;this._name = value;
+            &Tab;}
+
+            &Tab;get age() {
+            &Tab;&Tab;return this._age;
+            &Tab;}
+
+            &Tab;set age(value) {
+            &Tab;&Tab;this._age = value;
+            &Tab;}
+
+            &Tab; //normal method
+            &Tab;sayHello() {
+            &Tab;&Tab;console.log(&#39;Hello&#39;);
+            &Tab;}
+            }
+
+            new Person().sayHello();
+        </code>
+
+        Zoal is te zien in het code voorbeeld, is het mogelijk om getters en setters te gebruiken voor properties die
+        bij
+        een class horen.
+    </p>
+    <p>
+        Dit is vooral syntactic sugar voor de functie constructor notatie.
+        Het wordt interessanter als er een voorbeeld genomen wordt voor object inheritance.
+        <br/>
+        In het volgende voorbeeld is er een stukje JavaScript te zien wat gegeneerd is door TypeScript om inheritance to
+        simuleren:
+        <code class="code-block">
+            var __extends = this.__extends || function (d, b) {
+            &Tab;for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+            &Tab;function __() { this.constructor = d; }
+            &Tab;__.prototype = b.prototype;
+            &Tab;d.prototype = new __();
+            };
+            var SwitchBooleanAction = (function (_super) {
+            &Tab;__extends(SwitchBooleanAction, _super);
+            &Tab;function SwitchBooleanAction(triggerOptions, target, propertyPath, condition) {
+            &Tab;&Tab;_super.call(this, triggerOptions, condition);
+            &Tab;&Tab;this.propertyPath = propertyPath;
+            &Tab;&Tab;this._target = target;
+            }
+            &Tab;SwitchBooleanAction.prototype.execute = function () {
+            &Tab;&Tab;this._target[this._property] = !this._target[this._property];
+            &Tab;};
+            &Tab;return SwitchBooleanAction;
+            })(BABYLON.Action);
+        </code>
+
+        Dit is zeer complex. JavaScript 6 heeft hiervoor het keyword <i>extends</i> geïntroduceerd.
+        In het volgende voorbeeld wordt de class person uit het eerdere voorbeeld extended met de class child.
+        <code class="code-block">
+            class Child extends Person {
+            &Tab;eatCandy() {
+            &Tab;&Tab;// do something
+            &Tab;}
+            }
+
+            var child = new Child();
+            child.age = 5; // access Person property
+            child.eatCandy(); // access new method
+        </code>
+    </p>
+</article>
 <h4 id="string-interpolation">String interpolation</h4>
+<article>
+    In JavaScript kunnen strings concatenated worden met de <i>+</i> operator.
+    In sommige programmeertalen kan je values interpoleren in een string literal.
+    <a href="https://developers.google.com/web/updates/2015/01/ES6-Template-Strings"
+       class="ref"></a>
+    Sinds JavaScript 6 is dit ook mogelijk. Dit kan met de volgende notatie:
+    <code class="code-block">
+        var greeting = 'world';
+        console.log('Hello ${world}!');
+        // output: Hello world!
+    </code>
+</article>
 <h4 id="destructuring">Destructuring</h4>
 <h4 id="const">Constants</h4>
 <h4 id="let">Block scoped variables</h4>
