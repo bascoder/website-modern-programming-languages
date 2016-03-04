@@ -60,7 +60,7 @@
 <h4 id="lambda">Lambda expressies</h4>
 <article>
     <p>
-        Met behulp van de arrow <i>=></i> notatie ondersteunt JavaScript 6 lambda expressies.
+        Met behulp van de arrow <code>=></code> notatie ondersteunt JavaScript 6 lambda expressies.
         <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-arrow-function-definitions" class="ref"></a>
     </p>
     <p>
@@ -86,7 +86,7 @@
     <p>
         Sinds JavaScript 6 is het mogelijk om klassen te definiëren op dezelfde manier als
         in Java of C&num;
-        <a href="http://www.sitepoint.com/understanding-ecmascript-6-class-inheritance/"></a>
+        <a href="http://www.sitepoint.com/understanding-ecmascript-6-class-inheritance/" class="ref"></a>
     </p>
     <p>
         Voor heen kon je objecten op de volgende twee manieren aanmaken:
@@ -180,7 +180,7 @@
             })(BABYLON.Action);
         </code>
 
-        Dit is zeer complex. JavaScript 6 heeft hiervoor het keyword <i>extends</i> geïntroduceerd.
+        Dit is zeer complex. JavaScript 6 heeft hiervoor het keyword <code>extends</code> geïntroduceerd.
         In het volgende voorbeeld wordt de class person uit het eerdere voorbeeld extended met de class child.
         <code class="code-block">
             class Child extends Person {
@@ -197,7 +197,7 @@
 </article>
 <h4 id="string-interpolation">String interpolation</h4>
 <article>
-    In JavaScript kunnen strings concatenated worden met de <i>+</i> operator.
+    In JavaScript kunnen strings concatenated worden met de <code>+</code> operator.
     In sommige programmeertalen kan je values interpoleren in een string literal.
     <a href="https://developers.google.com/web/updates/2015/01/ES6-Template-Strings"
        class="ref"></a>
@@ -210,7 +210,87 @@
 </article>
 <h4 id="destructuring">Destructuring</h4>
 <h4 id="const">Constants</h4>
+<article>
+    <p>
+        Voorheen was het alleen mogelijk om waarden op te slaan in variabelen. In JavaScript 6 is de keyword
+        <code>const</code> geïntroduceerd<a
+            href="http://www.ecma-international.org/ecma-262/6.0/#sec-function-definitions-static-semantics-isconstantdeclaration"
+            class="ref"></a> waarmee afgedwongen wordt dat een waarde constant is.
+        Dit voorkomt dat waarden die constant zouden moeten zijn per ongeluk overgeschreven worden. Ook nodigt dit uit
+        om zogenaamde <em>magic numbers</em> in constants op te slaan.
+        <br/>
+        Hierbij het volgende voorbeeld:
+        <code class="code-block">
+            var a = 'this is variable';
+            const b = 'this is constant';
+
+            console.log(a);
+            console.log(b);
+
+            a = 'new value';
+            b = 'new value'; // SyntaxError: unknown; Line 8: "b" is read-only
+        </code>
+    </p>
+</article>
 <h4 id="let">Block scoped variables</h4>
+<article>
+    <p>
+        Door een variabele te declareren met de keyword <code>var</code> is de variabele beschikbaar in een zogenaamde
+        closure.
+        Daarnaast past JavaScript <em>hoisting</em> toe. Dat betekent dat een variabele beschikbaar is binnen de hele
+        closure, en het maakt niet uit wanneer die declared is. <a
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var#var_hoisting"
+            class="ref"></a>
+        Dit kan uitgelegd worden met het volgende code voorbeeld:
+    </p>
+    <p>
+        <code class="code-block">
+            a = 5;
+            // multiple lines of code
+            var a;
+        </code>
+        De JavaScript interpreter zal dit begrijpen als:
+        <code class="code-block">
+            var a;
+            a = 5;
+            // multiple lines of code
+        </code>
+    </p>
+    <p>
+        Alle <code>var</code> declaraties worden door de compiler bovenaan de interpreter geplaatst. Dit kan vreemde
+        situaties <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+                     class="ref"></a>
+        opleveren zoals te zien is in het volgende code voorbeeld:
+        <code class="code-block">
+            var x = 1;
+            if(true) {
+            &Tab;var x = 5;
+            }
+            console.log(x); // output: 5
+        </code>
+        Je zou verwachten dat de tweede declaratie van <code>var x</code> gescheiden is van de eerste declaratie. Echter
+        verwijzen beide naar dezelfde waarde, dus <code>var x = 5</code> overschrijft de huidige waarde van x.
+    </p>
+    <p>
+        Om dit soort onverwachte resultaten te voorkomen is in JavaScript 6 het keyword <code>let</code> geïntroduceerd.<a
+            href="http://www.ecma-international.org/ecma-262/6.0/#sec-function-definitions-static-semantics-isconstantdeclaration"
+            class="ref"></a> Met dit keyword kunnen variabelen niet buiten de <em>block scope</em> gebruikt worden
+        waarin ze gedeclareerd zijn.<br/>
+        Hierbij hetzelfde code voorbeeld maar dan met het <code>let</code> keyword:
+        <code class="code-block">
+            let x = 1;
+            if(true) {
+            &Tab;let x = 5;
+            }
+            console.log(x); // output: 1
+        </code>
+        De eerste declaratie van <em>x</em> geldt voor de global scope. De tweede declaratie van <em>x</em> geldt voor
+        de block scope van het <em>if</em> statement. Dit zorgt ervoor dat <em>x</em> nog steeds de waarde 1 heeft op
+        het moment dat <em>console.log</em> wordt aangeroepen.<a
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let"
+            class="ref"></a>
+    </p>
+</article>
 <h4 id="for-of">For Of iterators</h4>
 <h4 id="modules">Modules</h4>
 <h4 id="promises">Promises</h4>
