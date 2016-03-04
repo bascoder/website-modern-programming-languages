@@ -128,3 +128,24 @@ a.ref:after {
     overflow: inherit;
     min-height: 300px;
 }
+
+/* Style tables */
+table.table-bordered {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8em;
+}
+
+table.table-bordered, table.table-bordered th, table.table-bordered td {
+    border-bottom: 1px solid #aaa;
+    padding: 0.5em 1.5em;
+    text-align: left;
+}
+
+table.table-bordered tbody > tr:nth-child(even) {
+    background-color: #ededed;
+}
+
+table.table-bordered thead > tr {
+    background-color: #6699ff;
+}
