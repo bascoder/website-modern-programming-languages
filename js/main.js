@@ -44,6 +44,7 @@
             console.log('Start loading ', url);
             $('#content-section').load(url, null, function () {
                 console.log('Done loading ', url);
+                makeRefList();
             });
 
             validator.updateValidator();
@@ -72,18 +73,19 @@
                 console.log("New page: ", currentPage);
                 setActiveLi();
                 loadContent();
-                makeRefList();
             }
         };
 
         function makeRefList() {
             $('#ReferenceList').empty();
             var allLinks = $("a[class='ref']");
-            allLinks.each(function(index) {
+            allLinks.each(function (index) {
+                index += 1;
                 $(this).append(index);
-                $('#ReferenceList').append("<li>" + index + " " + $(this) + "</li>");
+                var url = $(this).attr('href');
+                $('#ReferenceList').append("<li><a href='" + url + "'>" + url + "</a></li>");
             });
-        };
+        }
     };
 
     var Navigation = function () {
