@@ -69,7 +69,7 @@ div {
 }
 
 .message.text-success {
-    color:  #047526;
+    color: #047526;
 }
 
 .message.text-error {
@@ -98,4 +98,28 @@ code.code-block {
     background-color: #f0f0f0;
 
     overflow-y: scroll;
+}
+
+/* Reference links in super and surrounded by square braces [1], [2] */
+a.ref {
+    vertical-align: super;
+    font-size: 0.7em;
+
+    text-decoration: none;
+}
+
+a.ref:before {
+    content: '[';
+}
+
+a.ref:after {
+    content: ']';
+}
+
+#ReferenceList {
+    font-size: 0.8em;
+}
+
+#ReferenceList a:visited {
+    color: #2f62ff;
 }
