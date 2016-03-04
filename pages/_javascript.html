@@ -17,6 +17,11 @@
         <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/JavaScript_technologies_overview"
            class="ref"></a>
     </p>
+    <h3>Populariteit</h3>
+    <p>
+        De volgende grafiek geeft het aantal toegevoegde repositories op GitHub weer per jaar wat JavaScript gebruikt.
+    </p>
+    <div id="js-popularity-graph" class="plot-graph"></div>
 </article>
 <h2 id="js-vs-java">JavaScript vs Java</h2>
 <article>
@@ -292,6 +297,103 @@
     </p>
 </article>
 <h4 id="for-of">For Of iterators</h4>
-<h4 id="modules">Modules</h4>
-<h4 id="promises">Promises</h4>
+<article>
+    <p>Sinds JavaScript 6 is het mogelijk om over <em>iterable</em> collections te itereren met een for of loop. Deze is
+        vergelijkbaar met <em>foreach</em> in C&num;</p><a
+        href="https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Statements/for...of" class="ref"></a>
 
+    <code class="code-block">
+        var users = [{},{}];
+        for(let user of users) {
+        &Tab;// do something with user
+        }
+    </code>
+</article>
+<h4 id="modules">Modules</h4>
+<article>
+    <p>
+        In het tijdperk voor JavaScript 6 zijn er allerlei libraries ontwikkeld om het mogelijk te maken om code te
+        scheiden in modules. Het voordeel hiervan is dat bepaalde code private gemaakt kan worden en maar
+        een deel gebruikt wordt om een API te exposen. Ook voorkomt het dat de global namespace vervuild wordt met
+        allerlei globale variabelen. Mochten er twee libraries zijn die allebei het symbool &dollar; in gebruik nemen,
+        dan levert dit conflicten op als deze niet in modules zijn weggestopt.
+    </p>
+    <p>
+        Een voorbeeld van zo'n library is <a href="http://requirejs.org/">RequireJS</a>. Deze libraries maakt het
+        mogelijk om code in te delen in modules en modules asynchroon in te laden wanneer nodig. Ook kan een alias
+        worden gegeven aan een namespace van een module, dit voorkomt dat twee libraries conflicten wanneer zei dezelfde
+        namespace gebruiken.<a href="http://requirejs.org/docs/jquery.html" class="ref"></a>
+    </p>
+    <p>
+        Sinds JavaScript 6 worden modules native ondersteund. Met het keyword <code>export</code> kunnen functies
+        beschikbaar worden gesteld voor andere modules. Met het keyword <code>import</code> kunnen functies of gehele
+        modules geïmporteerd worden.<a href="http://www.ecma-international.org/ecma-262/6.0/#sec-modules"
+                                       class="ref"></a><a
+            href="https://developer.mozilla.org/nl/docs/Web/JavaScript/Reference/Statements/import" class="ref"></a>
+        <br/>
+        Dit gaat als volgt:
+        <code class="code-block">
+            import * as alias from 'module-name';
+            alias.aFunction();
+            alias.anotherFunction();
+        </code>
+        In dit voorbeeld worden alle functies uit <em>module-name.js</em> geïmporteerd. Vervolgens kan met de alias elke
+        geëxporteerde functie aangeroepen worden.
+        Het is niet verplicht om een alias mee te geven, maar dit voorkomt conflicten met andere modules.
+    </p>
+</article>
+<h4 id="promises">Promises</h4>
+<article>
+    <p>
+        In JavaScript omgevingen zoals de browser of NodeJS is het mogelijk om code asynchroon uit te voeren. Meestal
+        wordt een callback functie meegegeven om het resultaat af te vangen wanneer dit beschikbaar is.
+        <a href="https://developer.mozilla.org/en-US/docs/AJAX/Getting_Started" class="ref"></a><a
+            href="http://sdsu-dspace.calstate.edu/bitstream/handle/10211.3/125396/Vaddineni_sdsu_0220N_10472.pdf?sequence=1"
+            class="ref"></a>
+        Echter lost elke library asynchrone afhandeling anders op. Sinds JavaScript 6 is een uniforme manier
+        geïntroduceerd om asynchrone acties af te handelen inclusief error handling: <em>promises</em>.
+        Het promise object heeft de methods <em>then</em> en <em>catch</em>, hier kunnen de callback functies aan mee
+        worden gegeven. In de constructor wordt een executor
+        functie meegegeven, deze functie kan na een asynchrone actie de <em>resolve</em> of <em>reject</em> functie
+        aanroepen. Vervolgens wordt de respectieve callbacks aangeroepen, then voor resolve, en catch voor reject.
+    </p>
+</article>
+<script>
+    (function () {
+        "use strict";
+
+        //TODO more data
+
+        $(document).ready(function () {
+            var url = 'https://api.github.com/search/repositories?language:javascript&sort=created&order=desc&q=javascript';
+            $.getJSON(url, null, function (json) {
+                var countByYear = {};
+                $.each(json.items, function () {
+                    var item = this;
+                    var date = new Date(item.pushed_at);
+                    var year = date.getFullYear().toString();
+
+                    if (countByYear.hasOwnProperty(year)) {
+                        countByYear[year] += 1;
+                    } else {
+                        countByYear[year] = 1;
+                    }
+                });
+
+                console.log(countByYear);
+
+                var series = [];
+                for (var year in countByYear) {
+                    if (countByYear.hasOwnProperty(year)) {
+                        series.push([parseInt(year), parseInt(countByYear[year])]);
+                    }
+                }
+
+                console.log(series);
+
+                $('#js-popularity-graph').plot([series]);
+            });
+        });
+    })();
+
+</script>

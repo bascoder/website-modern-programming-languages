@@ -123,3 +123,8 @@ a.ref:after {
 #ReferenceList a:visited {
     color: #2f62ff;
 }
+
+.plot-graph {
+    overflow: inherit;
+    min-height: 300px;
+}
