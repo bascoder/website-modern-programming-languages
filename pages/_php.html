@@ -9,9 +9,34 @@
     </p>
 <h2 id="PHP-history">De oorsprong van PHP</h2>
     <p> 
-        PHP staat voor "PHP: Hypertext Preposessor" <a class="ref" href="http://php.net/manual/en/faq.general.php"></a>, dit is echter niet altijd zo geweest. PHP zag het licht als "Presonal Home Page/Forms Interpeter" en werd in 1994 ontwikkeld door Rasmus Lerdorf. In het begin was PHP niet meer dan een set van CGI's die Lerdorf gebruikte om bij te houden wie zijn online cv bezocht. maar in de loop van de tijd schreef hij er steeds meer tools bij en al snel begon het uit te groeien tot de taal die we vandaag kennen als PHP.<a class="ref" href="http://php.net/manual/en/history.php.php"></a>
+        PHP staat voor "PHP: Hypertext Preprosessor" <a class="ref" href="http://php.net/manual/en/faq.general.php"></a>, dit is echter niet altijd zo geweest. PHP zag het licht als "Presonal Home Page/Forms Interpeter" en werd in 1994 ontwikkeld door Rasmus Lerdorf. In het begin was PHP niet meer dan een set van CGI's die Lerdorf gebruikte om bij te houden wie zijn online cv bezocht. maar in de loop van de tijd schreef hij er steeds meer tools bij en al snel begon het uit te groeien tot de taal die we vandaag kennen als PHP. Met de release van PHP 3 werd de naam van PHP/FI veranderd naar PHP en kreeg het de huidige betekenis, namelijk "PHP: Hypertext Preprossesor" ook was dit de eerste versie die echt lijkt op de PHP zoals we die vandaag kennen.<a class="ref" href="http://php.net/manual/en/history.php.php"></a>
     </p>
-<h2 id="PHP-use">Gebruik van PHP</h2>
+<h2 id="PHP-use">PHP struktuur</h2>
+    <p>
+        PHP is een serverside scripting language, dit betekent dat de PHP code nooit in de browser te zien is. Een pagina die gescheven is in PHP bevat een mix van HTML en PHP en als de pagina word opgevraag dan word de PHP code door de server uitgevoerd wat resulteerd is stukken HTML code die vervolgens de PHP code in de opgevraagde pagina vervangt.
+        De server bevat bijvoorbeeld de volgende PHP pagina:
+        <code class="code-block">
+            &lt;!Doctype html&gt;
+            &lt;HTML&gt;
+            &Tab;&lt;body&gt;
+            &Tab;&Tab;&lt;?php
+            &Tab;&Tab;&Tab;echo 'some text';
+            &Tab;&Tab;?&gt;
+            &Tab;&lt;/body&gt;
+            &lt;/HTML&gt;
+        </code>
+        Als deze pagina door een browser word opgevraagt dan word de PHP code door de server uitgevoerd en is de resulterende code voor de browser:
+                <code class="code-block">
+            &lt;!Doctype html&gt;
+            &lt;HTML&gt;
+            &Tab;&lt;body&gt;
+            &Tab;&Tab;some text
+            &Tab;&lt;/body&gt;
+            &lt;/HTML&gt;
+        </code>
+        Op deze manier is het eenvoudig om dynamiche stukken in een website te bouwen. een bijkomend voordeel is dat men de PHP code waar je als developer hard op hebt zitten zwoegen niet makkelijk kan stelen omdat deze normaal gesproken nooit de server verlaat.
+    </p>
 
 
 <h2 id="PHP7">PHP 7</h2>
+<p>nogsteeds kut</p>
