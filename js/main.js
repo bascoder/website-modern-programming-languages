@@ -101,6 +101,11 @@
         }
     };
 
+    function isLocalhost() {
+        var hostname = window.location.hostname;
+        return hostname == 'localhost' || hostname == '127.0.0.1';
+    }
+
     var Validator = function () {
         function getValidatorUri(out) {
             var urlEncoded = encodeURI(window.location.href);
@@ -108,9 +113,14 @@
         }
 
         function validate(callback) {
-            $.getJSON(getValidatorUri('json'), null, function (json) {
-                callback(json);
-            });
+            if (isLocalhost()) {
+                // don't call validator for localhost to prevent IP blacklisting
+                callback({messages: []});
+            } else {
+                $.getJSON(getValidatorUri('json'), null, function (json) {
+                    callback(json);
+                });
+            }
         }
 
         function setHtmlElement(messages) {
