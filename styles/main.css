@@ -149,3 +149,7 @@ table.table-bordered tbody > tr:nth-child(even) {
 table.table-bordered thead > tr {
     background-color: #6699ff;
 }
+
+div.section {
+    margin: 1em 0;
+}
