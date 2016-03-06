@@ -45,9 +45,8 @@
             $('#content-section').load(url, null, function () {
                 console.log('Done loading ', url);
                 makeRefList();
+                validator.updateValidator();
             });
-
-            validator.updateValidator();
         }
 
         function setCurrentPage() {
@@ -119,6 +118,7 @@
                 data: '<!DOCTYPE html> ' + document.documentElement.outerHTML,
                 contentType: 'text/html; charset=UTF-8',
                 success: callback,
+                cache: true,
                 error: function (xhr, text, status) {
                     console.error(xhr, text, status);
                 }
@@ -126,13 +126,14 @@
         }
 
         function setHtmlElement(messages) {
+            var messagesCount = messages.length;
             var validator = $('#validator');
-            validator.html('<a href="' + getValidatorUri('html') + '" target="_blank">W3C error count: ' + messages);
-            if (messages >= 1) {
+            validator.html('<a href="' + getValidatorUri('html') + '" target="_blank">W3C message count: ' + messagesCount);
+            if (messagesCount >= 1) {
                 validator.addClass('text-error');
                 validator.removeClass('text-success');
 
-                console.error(messages);
+                console.info("W3C errors/warnings/infos:", messages);
             } else {
                 validator.addClass('text-success');
                 validator.removeClass('text-error');
@@ -142,7 +143,7 @@
         this.updateValidator = function () {
             if(!isLocalhost()) {
                 validate(function (status) {
-                    var messages = status.messages.length;
+                    var messages = status.messages;
                     setHtmlElement(messages);
                 });
             } else {
