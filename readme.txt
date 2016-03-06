@@ -11,6 +11,7 @@ Url: http://www.students.science.uu.nl/~5836530/practicum1
 # Browser compatibiliteit
 Chrome 48.0.2564.109 m
 Firefox 39.0
+Firefox 41.0.2
 
 # Lokaal installeren met Git
 `bower install`
@@ -23,3 +24,5 @@ Firefox 39.0
 - gebruik HTML5 history api voor client side navigatie.
 - gebruik .htaccess Rewrite conditions om niet bestaande pagina's door te verwijzen.
 - W3C html validator in de footer. URL to detailed page.
+- Responsive design, met responsive nav menu. Zie js/nav-responsive.js en styles/mobile.css
+- index.js bevat photo-browser
