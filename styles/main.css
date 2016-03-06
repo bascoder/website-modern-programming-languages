@@ -153,3 +153,13 @@ table.table-bordered thead > tr {
 div.section {
     margin: 1em 0;
 }
+
+.menu-toggle {
+    display: none !important;
+}
+
+@media screen and (min-device-width: 480px) {
+    #general-nav > ul {
+        display: block !important;
+    }
+}

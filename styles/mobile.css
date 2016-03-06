@@ -1,0 +1,20 @@
+@media screen and (max-device-width: 480px) {
+    #general-nav > ul {
+        display: none;
+        width: 100%;
+
+        font-size: 1.5em;
+        padding: 0.5em 0;
+    }
+
+    #main-content {
+        margin: 0 2em;
+    }
+
+    .menu-toggle {
+        margin: 1em 2em 0;
+        width: 2em;
+
+        display: inline !important;
+    }
+}
