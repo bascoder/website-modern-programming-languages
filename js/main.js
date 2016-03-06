@@ -113,14 +113,16 @@
         }
 
         function validate(callback) {
-            if (isLocalhost()) {
-                // don't call validator for localhost to prevent IP blacklisting
-                callback({messages: []});
-            } else {
-                $.getJSON(getValidatorUri('json'), null, function (json) {
-                    callback(json);
-                });
-            }
+            $.ajax("https://validator.w3.org/nu/?out=json", {
+                method: 'POST',
+                accepts: 'application/json',
+                data: '<!DOCTYPE html> ' + document.documentElement.outerHTML,
+                contentType: 'text/html; charset=UTF-8',
+                success: callback,
+                error: function (xhr, text, status) {
+                    console.error(xhr, text, status);
+                }
+            });
         }
 
         function setHtmlElement(messages) {
@@ -129,6 +131,8 @@
             if (messages >= 1) {
                 validator.addClass('text-error');
                 validator.removeClass('text-success');
+
+                console.error(messages);
             } else {
                 validator.addClass('text-success');
                 validator.removeClass('text-error');
@@ -136,10 +140,14 @@
         }
 
         this.updateValidator = function () {
-            validate(function (status) {
-                var messages = status.messages.length;
-                setHtmlElement(messages);
-            });
+            if(!isLocalhost()) {
+                validate(function (status) {
+                    var messages = status.messages.length;
+                    setHtmlElement(messages);
+                });
+            } else {
+                console.info("Can't validate for localhost");
+            }
         }
     };
 
