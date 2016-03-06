@@ -7,7 +7,7 @@
             href="https://golang.org/project/" class="ref"></a> Go is gemaakt voor system programming en wordt compiled
         naar native binaries.<a href="https://golang.org/doc/faq#What_is_the_purpose_of_the_project" class="ref"></a><a
             href="https://golang.org/doc/code.html"
-            class="ref"></a>&nbsp;Het design van Go is geïnspirieerd door de programmeertaal C.<a
+            class="ref"></a>&nbsp;Het design van Go is geïnspireerd door de programmeertaal C.<a
             href="https://golang.org/doc/faq#ancestors" class="ref"></a>&nbsp;Go is gereleased in 2012 en zit momenteel
         op versie 1.6 als 7<sup>de</sup> major release.<a
             href="https://golang.org/doc/devel/release.html" class="ref"></a>
@@ -19,8 +19,8 @@
                     class="ref"></a>
     </p>
 </article>
-<h2>Waarom Go?</h2>
 <article>
+    <h2>Waarom Go?</h2>
     <p>
         Go is ontwikkeld omdat programmeertalen voor system programming bijna niet geëvolueerd zijn.
         De makers van Go hebben enkele trends ontdekt die volgens hen aangepakt moeten worden:
@@ -57,13 +57,151 @@
     </ul>
     <a href="https://golang.org/doc/faq#What_is_the_purpose_of_the_project" class="ref"></a>
 </article>
-<h2>Go en het web</h2>
 <article>
+    <h2>Go en het web</h2>
     <p>
         Go is ontworpen voor system programming. Maar het kan ook voor de back-end van web applicaties gebruikt worden.
         Bijvoorbeeld de website <a href="https://golang.org">Golang.org</a> draait op een Go back-end web applicatie.<a
             href="https://golang.org/doc/faq#Is_Google_using_go_internally" class="ref"></a>
         Daarnaast heeft de Google App Engine een omgeving voor Go.<a href="https://cloud.google.com/appengine/docs/go/"
                                                                      class="ref"></a>
+    </p>
+</article>
+<article>
+    <h3>Hello World</h3>
+    <p>
+        Het volgende code voorbeeld komt van de <a href="https://cloud.google.com/appengine/docs/go/">Google App Engine
+        documentatie:</a>
+    </p>
+    <code class="code-block">
+        package hello
+
+        import (
+        &Tab;"fmt"
+        &Tab;"net/http"
+        )
+
+        func init() {
+        &Tab;http.HandleFunc("/", handler)
+        }
+
+        func handler(w http.ResponseWriter, r *http.Request) {
+        &Tab;fmt.Fprint(w, "Hello, world!")
+        }
+    </code>
+    <p>
+        Het <code>package</code> keyword geeft de package van de code aan.
+        Met <code>import</code> worden de <code>fmt</code> en <code>net/http</code> packages geïmporteerd.
+        De <code>init</code> functie wordt als eerst aangeroepen, in een Go package wordt <code>init</code> gebruikt om
+        een package te initialiseren.<a href="http://thenewstack.io/understanding-golang-packages/" class="ref"></a>
+        In deze functie wordt een callback functie meegegeven aan de http class, alle http
+        requests naar <code>/</code> zullen worden doorgegeven naar deze callback functie. De callback functie ontvangt
+        twee parameters: het response writer object en het http request object.<a
+            href="https://golang.org/doc/articles/wiki/#tmp_3" class="ref"></a> <code>Fmt</code> schrijft vervolgens op
+        de response writer.<a href="https://golang.org/pkg/fmt/" class="ref"></a>
+    </p>
+</article>
+<article>
+    <h3>Templates</h3>
+    <p>
+        In het vorige code voorbeeld was te zien hoe de <code>net/http</code> package statische content serveert aan de
+        client. Go heeft ook een package voor HTML templates: <code>html/template</code> Met deze package kunnen HTML
+        templates ingeladen worden en vervolgens geparsed worden met bepaalde parameters.<a
+            href="https://golang.org/doc/articles/wiki/#tmp_6" class="ref"></a> <br/>
+        In het volgende code voorbeeld van de Go documentatie wordt een template geparsed met een parameter:
+    </p>
+    <strong>edit.html</strong>
+    <code class="code-block">
+        &lt;h1&gt;Editing {{.Title}}&lt;/h1&gt;
+
+        &lt;form action=&quot;/save/{{.Title}}&quot; method=&quot;POST&quot;&gt;
+        &lt;div&gt;&lt;textarea name=&quot;body&quot; rows=&quot;20&quot; cols=&quot;80&quot;&gt;{{printf &quot;%s&quot;
+        .Body}}&lt;/textarea&gt;&lt;/div&gt;
+        &lt;div&gt;&lt;input type=&quot;submit&quot; value=&quot;Save&quot;&gt;&lt;/div&gt;
+        &lt;/form&gt;
+    </code>
+    <strong>main.go</strong>
+    <code class="code-block">
+        func editHandler(w http.ResponseWriter, r *http.Request) {
+        &Tab;title := r.URL.Path[len(&quot;/edit/&quot;):]
+        &Tab;p, err := loadPage(title)
+        &Tab;if err != nil {
+        &Tab;&Tab;p = &amp;Page{Title: title}
+        &Tab;}
+        &Tab;t, _ := template.ParseFiles(&quot;edit.html&quot;)
+        &Tab;t.Execute(w, p)
+        }
+    </code>
+    <p>
+        In <em>edit.html</em> wordt een template gedefinieerd die de parameters <em>Title</em> en <em>Body</em>
+        gebruikt. Op de plekken met &lcub;&lcub;&nbsp;&rcub;&rcub; (curly braces) wordt de betreffende parameter
+        geïnjecteerd. De string
+        wordt wel HTML escaped om code injectie tegen te gaan.<a
+            href="https://golang.org/doc/articles/wiki/#tmp_6" class="ref"></a>
+    </p>
+</article>
+<article>
+    <h2>Concurrency</h2>
+    <p>Zoals eerder genoemd pakt Go concurrency aan, en is het ontworpen voor multicore systemen.</p>
+    <h3>Goroutines</h3>
+    <p>
+        In Go kunnen er <em>goroutines</em> gebruikt worden, dit zijn functies die asynchroon worden uitgevoerd. De
+        <code>main</code> functie is altijd een goroutine. Andere functies kunnen als goroutine worden uitgevoerd met de
+        keyword <code>go</code>.
+    </p>
+    <h3>Channels</h3>
+    <p>
+        Om goroutines met elkaar te laten communiceren zijn er <em>channels</em>.
+        Hierbij het volgende code voorbeeld uit golang-book<a href="https://www.golang-book.com/books/intro/10"
+                                                              class="ref"></a>:
+    </p>
+    <code class="code-block">
+        package main
+
+        import (
+        &Tab;&quot;fmt&quot;
+        &Tab;&quot;time&quot;
+        )
+
+        func pinger(c chan string) {
+        &Tab;for i := 0; ; i++ {
+        &Tab;&Tab;c &lt;- &quot;ping&quot;
+        &Tab;}
+        }
+
+        func printer(c chan string) {
+        &Tab;for {
+        &Tab;&Tab;msg := &lt;- c
+        &Tab;&Tab;fmt.Println(msg)
+        &Tab;&Tab;time.Sleep(time.Second * 1)
+        &Tab;}
+        }
+
+        func main() {
+        &Tab;var c chan string = make(chan string)
+
+        &Tab;go pinger(c)
+        &Tab;go printer(c)
+
+        &Tab;var input string
+        &Tab;fmt.Scanln(&amp;input)
+        }
+    </code>
+    <p>
+        In het code voorbeeld wordt in de <code>main</code> functie een channel gedeclareerd:
+        <br/>
+        <code class="code-block">var c chan string = make(chan string)</code>
+        <br/>
+        Er wordt een <em>channel</em> aangemaakt om <em>strings</em> te communiceren. Vervolgens worden de
+        <code>pinger</code> en <code>printer</code> functies als goroutines aangeroepen.
+        Omdat de channel is meegegeven aan de goroutines kunnen zij gebruik maken van dezelfde data.
+        <code class="code-block">c <- "ping"</code>
+        Dit stukje code geeft aan dat de string <em>"ping"</em> naar de channel gepassed wordt.
+        In de <code>printer</code> staat het volgende stukje code:
+        <code class="code-block">msg := <- c</code>
+        Dit geeft aan dat <code>printer</code> net zo lang moet wachten totdat er een string wordt doorgegeven via
+        channel <code>c</code>.
+        De string ping wordt dus doorgegeven aan de variabele <code>msg</code>.<a
+            href="https://www.golang-book.com/books/intro/10"></a>
     </p>
 </article>
