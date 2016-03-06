@@ -158,7 +158,7 @@ div.section {
     display: none !important;
 }
 
-@media screen and (min-device-width: 480px) {
+@media screen and (min-width: 480px) {
     #general-nav > ul {
         display: block !important;
     }
