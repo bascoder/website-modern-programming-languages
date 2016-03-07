@@ -23,6 +23,11 @@ Firefox 41.0.2
 - main.js laadt webpagina elementen dynamisch in.
 - gebruik HTML5 history api voor client side navigatie.
 - gebruik .htaccess Rewrite conditions om niet bestaande pagina's door te verwijzen.
-- W3C html validator in de footer. URL to detailed page.
+- W3C html validator in de footer. Gebruik direct input validatie met API zodat dynamisch gegenereerde HTML gevalideerd kan worden.
 - Responsive design, met responsive nav menu. Zie js/nav-responsive.js en styles/mobile.css
 - index.js bevat photo-browser
+
+# Commit history GitHub
+https://github.com/bascoder/website-modern-programming-languages/commits/master
+bascoder: Bas van Marwijk
+prof1990: Jorrit Krapels
